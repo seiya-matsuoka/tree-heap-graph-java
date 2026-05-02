@@ -1,8 +1,10 @@
 package io.github.seiya_matsuoka.treeheapgraph;
 
+import io.github.seiya_matsuoka.treeheapgraph.runner.BinarySearchTreeRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.BinaryTreeRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.TopicRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.TreeBasicsRunner;
+import io.github.seiya_matsuoka.treeheapgraph.runner.TreeTraversalRunner;
 
 /**
  * リポジトリ全体の共通エントリーポイント
@@ -63,7 +65,7 @@ public class App {
         }
         // 処理途中の流れを表示したい場合に使用する。
         case "--trace" -> trace = true;
-        // target は今回のトピックでは使わないが、共通オプションとして受け取る。
+        // target は一部の topic でのみ使用する。
         case "--target" -> {
           if (i + 1 < args.length) {
             target = args[++i];
@@ -99,6 +101,8 @@ public class App {
     return switch (topic) {
       case "tree-basics" -> new TreeBasicsRunner();
       case "binary-tree" -> new BinaryTreeRunner();
+      case "binary-search-tree" -> new BinarySearchTreeRunner();
+      case "tree-traversal" -> new TreeTraversalRunner();
       default -> null;
     };
   }
@@ -110,13 +114,15 @@ public class App {
         "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic <topic> [options]");
     System.out.println();
     System.out.println("現在指定できる topic:");
-    System.out.println("  tree-basics  : 木の基礎を学ぶ");
-    System.out.println("  binary-tree  : 二分木の基礎を学ぶ");
+    System.out.println("  tree-basics         : 木の基礎を学ぶ");
+    System.out.println("  binary-tree         : 二分木の基礎を学ぶ");
+    System.out.println("  binary-search-tree  : 二分探索木を学ぶ");
+    System.out.println("  tree-traversal      : 木の走査と木に対する DFS / BFS を学ぶ");
     System.out.println();
     System.out.println("共通オプション:");
     System.out.println("  --input <値>    入力値を直接指定する");
     System.out.println("  --trace         処理途中の流れを表示する");
-    System.out.println("  --target <値>   今回のトピックでは使用しない");
+    System.out.println("  --target <値>   一部の topic で探索対象値として使用する");
     System.out.println("  --size <値>     指定したサイズで入力データを生成する");
     System.out.println();
     System.out.println("例:");
@@ -125,5 +131,11 @@ public class App {
     System.out.println(
         "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic binary-tree --input"
             + " 10,20,30,40,50,60,70");
+    System.out.println(
+        "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic binary-search-tree"
+            + " --target 30 --trace");
+    System.out.println(
+        "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic tree-traversal --input"
+            + " 10,20,30,40,50,60,70 --trace");
   }
 }
