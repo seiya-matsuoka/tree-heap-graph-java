@@ -2,6 +2,8 @@ package io.github.seiya_matsuoka.treeheapgraph;
 
 import io.github.seiya_matsuoka.treeheapgraph.runner.BinarySearchTreeRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.BinaryTreeRunner;
+import io.github.seiya_matsuoka.treeheapgraph.runner.HeapRunner;
+import io.github.seiya_matsuoka.treeheapgraph.runner.PriorityQueueRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.TopicRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.TreeBasicsRunner;
 import io.github.seiya_matsuoka.treeheapgraph.runner.TreeTraversalRunner;
@@ -103,6 +105,8 @@ public class App {
       case "binary-tree" -> new BinaryTreeRunner();
       case "binary-search-tree" -> new BinarySearchTreeRunner();
       case "tree-traversal" -> new TreeTraversalRunner();
+      case "heap" -> new HeapRunner();
+      case "priority-queue" -> new PriorityQueueRunner();
       default -> null;
     };
   }
@@ -118,6 +122,8 @@ public class App {
     System.out.println("  binary-tree         : 二分木の基礎を学ぶ");
     System.out.println("  binary-search-tree  : 二分探索木を学ぶ");
     System.out.println("  tree-traversal      : 木の走査と木に対する DFS / BFS を学ぶ");
+    System.out.println("  heap                : ヒープを学ぶ");
+    System.out.println("  priority-queue      : PriorityQueue を学ぶ");
     System.out.println();
     System.out.println("共通オプション:");
     System.out.println("  --input <値>    入力値を直接指定する");
@@ -137,5 +143,10 @@ public class App {
     System.out.println(
         "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic tree-traversal --input"
             + " 10,20,30,40,50,60,70 --trace");
+    System.out.println(
+        "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic heap --trace");
+    System.out.println(
+        "  java -cp out io.github.seiya_matsuoka.treeheapgraph.App --topic priority-queue --input"
+            + " 50,20,70,10,40,60,30 --trace");
   }
 }
